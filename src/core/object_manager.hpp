@@ -24,6 +24,31 @@
 #ifndef OBJECT_MANAGER_HPP
 #define OBJECT_MANAGER_HPP
 
+#define OBJECT_AABB   0
+#define OBJECT_CIRCLE 1
+
+struct f3_type
+{
+    float x;
+    float y;
+    float z;
+};
+
+struct object_data_type
+{
+    int     type;
+    f3_type position;
+};
+
+struct object_struct
+{
+    object_data_type data
+    //voa_data_type     *voa;
+    //physics_data_type *physics_data;
+};
+
+
+
 class object_manager_class
 {
     public:
