@@ -36,8 +36,9 @@
 #define RENDERER_GL3_CONTEXT_MAJOR 3
 #define RENDERER_GL3_CONTEXT_MINOR 3
 
-#define RENDERER_GL1 1
-#define RENDERER_GL3 3
+#define RENDERER_GL1  1
+#define RENDERER_GL3  3
+#define RENDERER_GLES 64
 
 struct render_GL_struct
 {

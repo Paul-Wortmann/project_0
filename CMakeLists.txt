@@ -124,6 +124,7 @@ Set (PROJECT_0_SOURCES
     ./src/core/object_manager.cpp
     ./src/core/graphics_engine/graphics_engine.cpp
     ./src/core/graphics_engine/graphics_engine_GL.cpp
+    ./src/core/graphics_engine/graphics_engine_GLES.cpp
     ./src/core/graphics_engine/graphics_engine_GL_legacy.cpp
     ./src/core/graphics_engine/graphics_engine_vao_manager.cpp
     ./src/core/map/map.cpp

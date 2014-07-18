@@ -23,6 +23,7 @@
 
 #include "graphics_engine.hpp"
 #include "graphics_engine_GL.hpp"
+#include "graphics_engine_GLES.hpp"
 #include "graphics_engine_GL_legacy.hpp"
 #include "../../game.hpp"
 
@@ -186,6 +187,9 @@ bool graphics_engine_class::init(void)
     bool return_value = false;
     switch (graphics_engine_class::renderer)
     {
+        case RENDERER_GLES:
+            //return_value = GLES_init();
+        break;
         case RENDERER_GL3:
             return_value = GL_init();
         break;
@@ -203,6 +207,9 @@ bool graphics_engine_class::deinit(void)
     bool return_value = false;
     switch (graphics_engine_class::renderer)
     {
+        case RENDERER_GLES:
+            //return_value = GLES_deinit();
+        break;
         case RENDERER_GL3:
             return_value = GL_deinit();
         break;
@@ -219,6 +226,9 @@ bool graphics_engine_class::render(void)
     bool return_value = false;
     switch (graphics_engine_class::renderer)
     {
+        case RENDERER_GLES:
+            //return_value = GLES_render();
+        break;
         case RENDERER_GL3:
             return_value = GL_render();
         break;
@@ -235,6 +245,9 @@ bool graphics_engine_class::build_mode_list(void)
     bool return_value = false;
     switch (graphics_engine_class::renderer)
     {
+        case RENDERER_GLES:
+            //return_value = GLES_build_mode_list();
+        break;
         case RENDERER_GL3:
             return_value = GL_build_mode_list();
         break;
@@ -251,6 +264,9 @@ std::string graphics_engine_class::get_display_mode(int mode_number)
     std::string return_value = "error";
     switch (graphics_engine_class::renderer)
     {
+        case RENDERER_GLES:
+            //return_value = GLES_get_display_mode(mode_number);
+        break;
         case RENDERER_GL3:
             return_value = GL_get_display_mode(mode_number);
         break;
