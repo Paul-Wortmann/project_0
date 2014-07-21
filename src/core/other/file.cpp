@@ -156,7 +156,7 @@ void file_class::file_system_init(char** arg_data)
     PHYSFS_Version version_info;
     PHYSFS_getLinkedVersion(&version_info);
     game.core.log.write("PhysFS Version -> "+game.core.misc.itos(version_info.major)+"."+game.core.misc.itos(version_info.minor)+"."+game.core.misc.itos(version_info.patch));
-    int load_error = PHYSFS_addToSearchPath(file_class::file_path.c_str(), 1);
+    int load_error = PHYSFS_mount(file_class::file_path.c_str(),NULL, 1);
     if (load_error != 1)
     {
         game.core.log.write("Fail -> Unable to load game data file: "+game.core.misc.itos(load_error));
@@ -210,7 +210,6 @@ SDL_Surface * file_class::load_image(std::string file_name)
     return(temp_serface);
 }
 
-/*
 void file_class::load_font(font_type *font, int pt_size)
 {
     if (PHYSFS_exists(font->path.c_str()))
@@ -227,7 +226,7 @@ void file_class::load_font(font_type *font, int pt_size)
             if (font->rwops_pointer != NULL)
             {
                 font->font_data = TTF_OpenFontRW(font->rwops_pointer, false,pt_size);
-                if (!font->font_data) game.core.log.write("Fail -> TTF_OpenFontRW: "+game.core.misc.itos(TTF_GetError()));
+                if (!font->font_data) game.core.log.write("Fail -> TTF_OpenFontRW: "+game.core.misc.cctos(TTF_GetError()));
             }
             else
             {
@@ -246,7 +245,6 @@ void file_class::load_font(font_type *font, int pt_size)
     }
     if (!font->font_data) game.state = GAME_STATE_ERROR;
 }
-*/
 
 Mix_Music *file_class::load_music(std::string file_name)
 {

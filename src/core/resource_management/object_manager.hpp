@@ -42,7 +42,7 @@ struct object_data_type
 
 struct object_struct
 {
-    object_data_type data
+    object_data_type data;
     //voa_data_type     *voa;
     //physics_data_type *physics_data;
 };

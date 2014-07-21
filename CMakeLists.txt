@@ -121,7 +121,6 @@ Set (PROJECT_0_SOURCES
 	./src/game.cpp
 	./src/main.cpp
     ./src/core/core.cpp
-    ./src/core/object_manager.cpp
     ./src/core/graphics_engine/graphics_engine.cpp
     ./src/core/graphics_engine/graphics_engine_GL.cpp
     ./src/core/graphics_engine/graphics_engine_GLES.cpp
@@ -135,7 +134,13 @@ Set (PROJECT_0_SOURCES
     ./src/core/other/io_manager.cpp
     ./src/core/other/log.cpp
     ./src/core/other/misc.cpp
+    ./src/core/other/physics.cpp
     ./src/core/other/timer.cpp
+    ./src/core/resource_management/font_manager.cpp
+    ./src/core/resource_management/music_manager.cpp
+    ./src/core/resource_management/object_manager.cpp
+    ./src/core/resource_management/sound_manager.cpp
+    ./src/core/resource_management/texture_manager.cpp
 )
 
 # Add icon and file info to executable for Windows systems

@@ -31,7 +31,13 @@
 #include "other/io_manager.hpp"
 #include "other/log.hpp"
 #include "other/misc.hpp"
+#include "other/physics.hpp"
 #include "other/timer.hpp"
+#include "resource_management/font_manager.hpp"
+#include "resource_management/music_manager.hpp"
+#include "resource_management/object_manager.hpp"
+#include "resource_management/sound_manager.hpp"
+#include "resource_management/texture_manager.hpp"
 
 class core_class
 {
@@ -41,10 +47,16 @@ class core_class
     command_line_parser_class command_line_parser;
     config_class              config;
     file_class                file;
+    font_manager_class        font_manager;
     graphics_engine_class     graphics;
     io_manager_class          io_manager;
     log_class                 log;
     misc_class                misc;
+    music_manager_class       music_manager;
+    object_manager_class      object_manager;
+    physics_class             physics;
+    sound_manager_class       sound_manager;
+    texture_manager_class     texture_manager;
     timer_class               timer;
 };
 

@@ -251,7 +251,7 @@ bool GL_legacy_deinit(void)
     bool return_value = true;
 
     return(return_value);
-};
+}
 
 bool GL_legacy_render(void)
 {
@@ -260,7 +260,7 @@ bool GL_legacy_render(void)
     //game.render();
     SDL_GL_SwapWindow(game.core.graphics.window);
     return(return_value);
-};
+}
 
 bool GL_legacy_build_mode_list(void)
 {
@@ -317,7 +317,7 @@ bool GL_legacy_build_mode_list(void)
     }
     game.core.debug = debug_state;
     return(return_value);
-};
+}
 
 std::string GL_legacy_get_display_mode(int mode_number)
 {
@@ -328,5 +328,5 @@ std::string GL_legacy_get_display_mode(int mode_number)
     if (game.core.graphics.display_mode[mode_number].w < 1000) padding_left  = " ";
     if (game.core.graphics.display_mode[mode_number].h < 1000) padding_right = " ";
     return(padding_left+game.core.misc.itos(game.core.graphics.display_mode[mode_number].w)+" X "+game.core.misc.itos(game.core.graphics.display_mode[mode_number].h)+padding_right);
-};
+}
 

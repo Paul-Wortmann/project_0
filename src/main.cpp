@@ -23,6 +23,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include "physfs.h"
 
 #include "game.hpp"
 
@@ -30,6 +31,7 @@ game_class game;
 
 int main (int argc, char **argv)
 {
+    texture_type *test_texture = NULL;
     unsigned int return_value = EXIT_SUCCESS;
     while (game.state != GAME_STATE_QUIT)
     {
@@ -50,13 +52,14 @@ int main (int argc, char **argv)
                 game.core.config.display_resolution_x = 640;
                 game.core.config.display_resolution_y = 480;
                 //----------------- temp debug ---------------------
-                game.core.graphics.renderer = RENDERER_GL3;
+                game.core.graphics.renderer = RENDERER_GL1;
                 game.core.graphics.init();
                 SDL_Init(SDL_INIT_TIMER);
                 game.core.timer.start();
                 game.core.timer.last_ticks = game.core.timer.getticks();
                 //init subsystems
                 //load base resources
+                test_texture = game.core.texture_manager.add_texture("data/tilesets/tileset_0.png");
                 game.state = GAME_STATE_ACTIVE;
             break;
             case GAME_STATE_ACTIVE:
@@ -73,19 +76,30 @@ int main (int argc, char **argv)
                 game.core.io_manager.process();
                 if (game.core.io_manager.key_escape) game.state = GAME_STATE_DEINIT;
                 //render
-                game.core.graphics.render();
+
+
+//test-------------
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+    game.core.texture_manager.draw(test_texture,false,0,0,0,1.0f,1.0f);
+    SDL_GL_SwapWindow(game.core.graphics.window);
+//test-------------
+
+
+
+                //game.core.graphics.render();
             break;
             case GAME_STATE_DEINIT:
                 game.core.log.write("Average FPS - "+game.core.misc.itos(game.core.FPS));
                 if (return_value == EXIT_SUCCESS) game.core.log.write("Game terminated correctly.");
                 else  game.core.log.write("Game terminated with error.");
                 game.core.graphics.deinit();
-                game.deinit();
                 game.core.config.file_save();
+                game.deinit();
                 game.state = GAME_STATE_QUIT;
             break;
             case GAME_STATE_QUIT:
                 //This code should never run! ;)
+                game.core.log.write("FAIL -> Internal error!");
             break;
             case GAME_STATE_ERROR:
             default:

@@ -188,7 +188,7 @@ bool graphics_engine_class::init(void)
     switch (graphics_engine_class::renderer)
     {
         case RENDERER_GLES:
-            //return_value = GLES_init();
+            return_value = GLES_init();
         break;
         case RENDERER_GL3:
             return_value = GL_init();
@@ -208,7 +208,7 @@ bool graphics_engine_class::deinit(void)
     switch (graphics_engine_class::renderer)
     {
         case RENDERER_GLES:
-            //return_value = GLES_deinit();
+            return_value = GLES_deinit();
         break;
         case RENDERER_GL3:
             return_value = GL_deinit();
@@ -227,7 +227,7 @@ bool graphics_engine_class::render(void)
     switch (graphics_engine_class::renderer)
     {
         case RENDERER_GLES:
-            //return_value = GLES_render();
+            return_value = GLES_render();
         break;
         case RENDERER_GL3:
             return_value = GL_render();
@@ -246,7 +246,7 @@ bool graphics_engine_class::build_mode_list(void)
     switch (graphics_engine_class::renderer)
     {
         case RENDERER_GLES:
-            //return_value = GLES_build_mode_list();
+            return_value = GLES_build_mode_list();
         break;
         case RENDERER_GL3:
             return_value = GL_build_mode_list();
@@ -265,7 +265,7 @@ std::string graphics_engine_class::get_display_mode(int mode_number)
     switch (graphics_engine_class::renderer)
     {
         case RENDERER_GLES:
-            //return_value = GLES_get_display_mode(mode_number);
+            return_value = GLES_get_display_mode(mode_number);
         break;
         case RENDERER_GL3:
             return_value = GL_get_display_mode(mode_number);
