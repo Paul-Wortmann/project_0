@@ -172,7 +172,7 @@ void file_class::file_system_deinit(void)
 
 SDL_Surface * file_class::load_image(std::string file_name)
 {
-    SDL_Surface *temp_serface = NULL;
+    SDL_Surface *temp_surface = NULL;
     if (PHYSFS_exists(file_name.c_str()))
     {
         PHYSFS_openRead(file_name.c_str());
@@ -187,7 +187,7 @@ SDL_Surface * file_class::load_image(std::string file_name)
             rwops_pointer = SDL_RWFromMem(file_data, file_size);
             if (rwops_pointer != NULL)
             {
-                temp_serface  = IMG_Load_RW(rwops_pointer, false);
+                temp_surface  = IMG_Load_RW(rwops_pointer, false);
                 if (rwops_pointer) SDL_FreeRW(rwops_pointer);
             }
             else
@@ -206,8 +206,8 @@ SDL_Surface * file_class::load_image(std::string file_name)
     {
         game.core.log.write("Fail -> PhysicsFS unable to find file - "+file_name);
     }
-    if (!temp_serface) game.state = GAME_STATE_ERROR;
-    return(temp_serface);
+    if (!temp_surface) game.state = GAME_STATE_ERROR;
+    return(temp_surface);
 }
 
 void file_class::load_font(font_type *font, int pt_size)
@@ -369,6 +369,45 @@ char *file_class::load_file_to_buffer (std::string file_name)
         game.state = GAME_STATE_ERROR;
     }
     return(temp_buffer);
+}
+
+file_buffer_type *file_class::load_file_to_buffer_object (std::string file_name)
+{
+    file_buffer_type *return_buffer_data = new file_buffer_type;
+    if (PHYSFS_exists(file_name.c_str()))
+    {
+        PHYSFS_openRead(file_name.c_str());
+        PHYSFS_File *file_pointer = NULL;
+        file_pointer = PHYSFS_openRead(file_name.c_str());
+        if (file_pointer)
+        {
+            PHYSFS_sint64 file_size = PHYSFS_fileLength(file_pointer);
+            return_buffer_data->buffer_size = file_size;
+            return_buffer_data->data = new char[file_size+1];
+            int length_read = PHYSFS_read(file_pointer, return_buffer_data->data, 1, file_size);
+            return_buffer_data->data[file_size] = 0; // added for GL shader loading
+            if (file_size != length_read)
+            {
+                game.core.log.write("Fail -> PhysicsFS ERROR loading file into buffer - "+file_name);
+                game.core.log.write("   File size - "+ game.core.misc.itos((int)file_size)+" data length read into buffer - "+ game.core.misc.itos(length_read));
+            }
+            if (file_pointer) PHYSFS_close(file_pointer);
+        }
+        else
+        {
+            game.core.log.write("Fail -> PhysicsFS unable to open file - "+file_name);
+        }
+    }
+    else
+    {
+        game.core.log.write("Fail -> PhysicsFS unable to find file - "+file_name);
+    }
+    if (return_buffer_data->data == NULL)
+    {
+        game.core.log.write("Fail -> PhysicsFS unable to load file into buffer - "+file_name);
+        game.state = GAME_STATE_ERROR;
+    }
+    return(return_buffer_data);
 }
 
 std::string file_class::get_time_string(void)

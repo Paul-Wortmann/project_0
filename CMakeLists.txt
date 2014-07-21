@@ -118,16 +118,16 @@ include_directories(/usr/include)
 
 Set (PROJECT_0_SOURCES
 
-	./src/game.cpp
-	./src/main.cpp
+    ./src/game.cpp
+    ./src/main.cpp
     ./src/core/core.cpp
     ./src/core/graphics_engine/graphics_engine.cpp
     ./src/core/graphics_engine/graphics_engine_GL.cpp
     ./src/core/graphics_engine/graphics_engine_GLES.cpp
     ./src/core/graphics_engine/graphics_engine_GL_legacy.cpp
     ./src/core/graphics_engine/graphics_engine_vao_manager.cpp
+    ./src/core/map/loader_tmx.cpp
     ./src/core/map/map.cpp
-    ./src/core/map/tmx_loader.cpp
     ./src/core/other/command_line_parser.cpp
     ./src/core/other/config.cpp
     ./src/core/other/file.cpp

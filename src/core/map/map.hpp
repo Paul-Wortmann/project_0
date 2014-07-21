@@ -32,6 +32,7 @@ struct tile_data
 
 class map_class
 {
+    public:
     int tiles_x;
     int tiles_y;
     int tiles_count;

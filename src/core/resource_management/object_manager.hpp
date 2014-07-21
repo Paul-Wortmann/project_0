@@ -24,15 +24,9 @@
 #ifndef OBJECT_MANAGER_HPP
 #define OBJECT_MANAGER_HPP
 
+#include "../other/types.hpp"
 #define OBJECT_AABB   0
 #define OBJECT_CIRCLE 1
-
-struct f3_type
-{
-    float x;
-    float y;
-    float z;
-};
 
 struct object_data_type
 {

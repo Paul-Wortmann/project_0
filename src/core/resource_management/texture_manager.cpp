@@ -367,8 +367,8 @@ bool texture_manager_class::load_sprite_sheet(texture_type *texture, int width_s
         return_value = false;
         game.core.log.write("Failed to load sprite sheet ->"+texture->data.path);
     }
-    if (sprite_sheet) SDL_FreeSurface(sprite_sheet);
-    if (temp_surface) SDL_FreeSurface(temp_surface);
+    if (sprite_sheet != NULL) SDL_FreeSurface(sprite_sheet);
+    if (temp_surface != NULL) SDL_FreeSurface(temp_surface);
     texture->data.loaded = return_value;
     return(return_value);
 };

@@ -25,6 +25,8 @@
 #define CORE_HPP
 
 #include "graphics_engine/graphics_engine.hpp"
+#include "map/map.hpp"
+#include "map/loader_tmx.hpp"
 #include "other/command_line_parser.hpp"
 #include "other/config.hpp"
 #include "other/file.hpp"
@@ -50,6 +52,7 @@ class core_class
     font_manager_class        font_manager;
     graphics_engine_class     graphics;
     io_manager_class          io_manager;
+    loader_tmx_class          tmx_loader;
     log_class                 log;
     misc_class                misc;
     music_manager_class       music_manager;

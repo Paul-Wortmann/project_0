@@ -31,7 +31,9 @@ game_class game;
 
 int main (int argc, char **argv)
 {
-    texture_type *test_texture = NULL;
+    texture_type *test_texture  = NULL;
+    texture_type *test_tile_set = NULL;
+    tmx_map_type *test_map      = NULL;
     unsigned int return_value = EXIT_SUCCESS;
     while (game.state != GAME_STATE_QUIT)
     {
@@ -39,6 +41,7 @@ int main (int argc, char **argv)
         {
             case GAME_STATE_INIT:
                 game.init();
+                game.core.log.write("# -------------- Game initialization ------------ #");
                 //game.core.debug = true;
                 game.write_console_version();
                 game.core.config.file_load();
@@ -59,8 +62,12 @@ int main (int argc, char **argv)
                 game.core.timer.last_ticks = game.core.timer.getticks();
                 //init subsystems
                 //load base resources
-                test_texture = game.core.texture_manager.add_texture("data/tilesets/tileset_0.png");
+                test_texture  = game.core.texture_manager.add_texture("data/hello_karl.png");
+                test_tile_set = game.core.texture_manager.add_texture("data/tilesets/tileset_0.png");
+                game.core.tmx_loader.load(test_map,"data/maps/test_0.tmx");
+
                 game.state = GAME_STATE_ACTIVE;
+                game.core.log.write("# ---------------- Game started ----------------- #");
             break;
             case GAME_STATE_ACTIVE:
                 game.core.FPS += (game.core.timer.getticks() - game.core.timer.last_ticks) / 1000;
@@ -80,7 +87,7 @@ int main (int argc, char **argv)
 
 //test-------------
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    game.core.texture_manager.draw(test_texture,false,0,0,0,1.0f,1.0f);
+    game.core.texture_manager.draw(test_texture,false,0,0,0,2.0f,0.5f);
     SDL_GL_SwapWindow(game.core.graphics.window);
 //test-------------
 
@@ -89,6 +96,8 @@ int main (int argc, char **argv)
                 //game.core.graphics.render();
             break;
             case GAME_STATE_DEINIT:
+                game.core.log.write("# -------------- Game de-initialization --------- #");
+                game.core.log.write("Textures loaded -> "+game.core.misc.itos(game.core.texture_manager.number_of_textures));
                 game.core.log.write("Average FPS - "+game.core.misc.itos(game.core.FPS));
                 if (return_value == EXIT_SUCCESS) game.core.log.write("Game terminated correctly.");
                 else  game.core.log.write("Game terminated with error.");
