@@ -37,8 +37,8 @@ void game_class::init(void)
 
 void game_class::deinit(void)
 {
-    game_class::core.log.deinit();
     game_class::core.file.file_system_deinit();
+    game_class::core.log.deinit();
 }
 
 void game_class::write_log_version(void)

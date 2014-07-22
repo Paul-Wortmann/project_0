@@ -140,6 +140,7 @@ Set (PROJECT_0_SOURCES
     ./src/core/resource_management/music_manager.cpp
     ./src/core/resource_management/object_manager.cpp
     ./src/core/resource_management/sound_manager.cpp
+    ./src/core/resource_management/sprite_sheet_manager.cpp
     ./src/core/resource_management/texture_manager.cpp
 )
 

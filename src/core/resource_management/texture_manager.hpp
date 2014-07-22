@@ -46,7 +46,6 @@
 #define TEXTURE_RENDER_UP       4
 #define TEXTURE_RENDER_DOWN     8
 
-
 struct frame_type
 {
     bool         active;

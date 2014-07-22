@@ -39,28 +39,30 @@
 #include "resource_management/music_manager.hpp"
 #include "resource_management/object_manager.hpp"
 #include "resource_management/sound_manager.hpp"
+#include "resource_management/sprite_sheet_manager.hpp"
 #include "resource_management/texture_manager.hpp"
 
 class core_class
 {
     public:
-    bool                      debug;
-    unsigned int              FPS;
-    command_line_parser_class command_line_parser;
-    config_class              config;
-    file_class                file;
-    font_manager_class        font_manager;
-    graphics_engine_class     graphics;
-    io_manager_class          io_manager;
-    loader_tmx_class          tmx_loader;
-    log_class                 log;
-    misc_class                misc;
-    music_manager_class       music_manager;
-    object_manager_class      object_manager;
-    physics_class             physics;
-    sound_manager_class       sound_manager;
-    texture_manager_class     texture_manager;
-    timer_class               timer;
+    bool                       debug;
+    unsigned int               FPS;
+    command_line_parser_class  command_line_parser;
+    config_class               config;
+    file_class                 file;
+    font_manager_class         font_manager;
+    graphics_engine_class      graphics;
+    io_manager_class           io_manager;
+    loader_tmx_class           tmx_loader;
+    log_class                  log;
+    misc_class                 misc;
+    music_manager_class        music_manager;
+    object_manager_class       object_manager;
+    physics_class              physics;
+    sound_manager_class        sound_manager;
+    sprite_sheet_manager_class sprite_sheet_manager;
+    texture_manager_class      texture_manager;
+    timer_class                timer;
 };
 
 #endif // CORE_HPP

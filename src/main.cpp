@@ -31,6 +31,7 @@ game_class game;
 
 int main (int argc, char **argv)
 {
+    sprite_sheet_type *test_sprite_sheet = NULL;
     texture_type *test_texture  = NULL;
     texture_type *test_tile_set = NULL;
     tmx_map_type *test_map      = NULL;
@@ -62,9 +63,10 @@ int main (int argc, char **argv)
                 game.core.timer.last_ticks = game.core.timer.getticks();
                 //init subsystems
                 //load base resources
-                test_texture  = game.core.texture_manager.add_texture("data/hello_karl.png");
-                test_tile_set = game.core.texture_manager.add_texture("data/tilesets/tileset_0.png");
-                game.core.tmx_loader.load(test_map,"data/maps/test_0.tmx");
+                //test_sprite_sheet  = game.core.sprite_sheet_manager.add("data/hello_karl.png",64,64);
+                //test_tile_set = game.core.texture_manager.add_texture("data/tilesets/tileset_0.png",true,64,64);
+                //test_texture = game.core.texture_manager.add_texture("data/tilesets/tileset_0.png",true,64,64);
+                //game.core.tmx_loader.load(test_map,"data/maps/test_0.tmx");
 
                 game.state = GAME_STATE_ACTIVE;
                 game.core.log.write("# ---------------- Game started ----------------- #");
@@ -87,7 +89,7 @@ int main (int argc, char **argv)
 
 //test-------------
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    game.core.texture_manager.draw(test_texture,false,0,0,0,2.0f,0.5f);
+    //game.core.sprite_sheet_manager.draw(test_sprite_sheet,0,0,0,1.0,0.5,0,0);
     SDL_GL_SwapWindow(game.core.graphics.window);
 //test-------------
 

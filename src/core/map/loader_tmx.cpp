@@ -34,9 +34,8 @@ void loader_tmx_class::load(tmx_map_type *tmx_map_pointer, std::string file_name
     game.core.log.write("Loading TMX map file -> "+file_name);
     if (PHYSFS_exists(file_name.c_str()))
     {
-        PHYSFS_openRead(file_name.c_str());
-        PHYSFS_File *file_pointer = NULL;
-        file_pointer = PHYSFS_openRead(file_name.c_str());
+        //PHYSFS_openRead(file_name.c_str());
+        PHYSFS_File *file_pointer = PHYSFS_openRead(file_name.c_str());
         if (file_pointer)
         {
             if (tmx_map_pointer == NULL) tmx_map_pointer = new tmx_map_type;
