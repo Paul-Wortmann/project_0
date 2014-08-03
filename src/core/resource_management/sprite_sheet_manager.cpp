@@ -132,15 +132,40 @@ void sprite_sheet_manager_class::draw(sprite_sheet_type *sprite_sheet, float pos
     {
         if (sprite_sheet->data.data)
         {
+            const float verticies[] = {
+            pos_x, pos_y,
+            pos_x + width, pos_y,
+            pos_x + width, pos_y + height,
+            pos_x, pos_y + height};
+            /*
+            const float texture_verticies[] = {
+            pos_x, pos_y,
+            pos_x + width, pos_y,
+            pos_x + width, pos_y + height,
+            pos_x, pos_y + height};
+            */
+            const float texture_verticies[] = {
+            0, 0,
+            32, 0,
+            32, 32,
+            0, 32};
+
             glPushMatrix();
             glBindTexture( GL_TEXTURE_2D, sprite_sheet->data.data);
             glLoadIdentity();
+
+            //glVertexPointer(2, GL_FLOAT, verticies);
+
+            //glTextureVertexPointer(2, GL_FLOAT, texture_verticies);
+            //glDrawArrays(GL_TRI_STRIP, 0, 4);
+
             glBegin( GL_QUADS );
             glTexCoord2i( 0, 1 );glVertex3f(pos_x-width,pos_y-height, pos_z);
             glTexCoord2i( 0, 0 );glVertex3f(pos_x-width,pos_y+height, pos_z);
             glTexCoord2i( 1, 0 );glVertex3f(pos_x+width,pos_y+height, pos_z);
             glTexCoord2i( 1, 1 );glVertex3f(pos_x+width,pos_y-height, pos_z);
             glEnd();
+
             glPopMatrix();
         }
         else
@@ -157,3 +182,21 @@ void sprite_sheet_manager_class::draw(sprite_sheet_type *sprite_sheet, float pos
         game.state = GAME_STATE_ERROR;
     }
 }
+
+
+/*
+        const float tw = float(spriteWidth) / texWidth;
+        const float th = float(spriteHeight) / texHeight;
+        const int numPerRow = texWidth / spriteWidth;
+        const float tx = (frameIndex % numPerRow) * tw;
+        const float ty = (frameIndex / numPerRow + 1) * th;
+
+        const float texVerts[] = {
+            tx, ty,
+            tx + tw, ty,
+            tx + tw, ty + th,
+            tx, ty + th
+        };
+*/
+        // ... Bind the texture, enable the proper arrays
+

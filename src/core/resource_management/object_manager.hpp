@@ -25,20 +25,45 @@
 #define OBJECT_MANAGER_HPP
 
 #include "../other/types.hpp"
+#include "sprite_sheet_manager.hpp"
 #define OBJECT_AABB   0
 #define OBJECT_CIRCLE 1
 
-struct object_data_type
+struct object_texture_data_type
 {
-    int     type;
-    f3_type position;
+    sprite_sheet_type *difuse;
+    sprite_sheet_type *normal;
+    sprite_sheet_type *specular;
 };
 
-struct object_struct
+struct object_base_data_type
 {
-    object_data_type data;
-    //voa_data_type     *voa;
-    //physics_data_type *physics_data;
+    int                      UID;
+    bool                     loaded;
+    int                      type;
+    f3_type                  position;
+    f3_type                  dimention; //AABB
+    f3_type                  rotation;
+};
+
+struct object_render_data_type
+{
+    object_texture_data_type  texture;
+    f3_type                  *vertex;
+};
+
+struct object_physics_data_type
+{
+    f3_type *velocity;
+    f3_type *acceleration;
+};
+
+struct object_type
+{
+    object_base_data_type   base;
+    object_render_data_type render;
+    //physics_data_type      *physics_data;
+    object_type            *next;
 };
 
 
@@ -46,7 +71,12 @@ struct object_struct
 class object_manager_class
 {
     public:
-    bool not_yet_implemented;
+        object_manager_class(void);
+       ~object_manager_class(void);
+        int                number_of_objects;
+        object_type       *root;
+        object_type       *last;
+        object_type       *add(int UID);
 };
 
 #endif // OBJECT_MANAGER_HPP
