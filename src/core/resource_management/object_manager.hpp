@@ -48,6 +48,7 @@ struct object_base_data_type
 
 struct object_render_data_type
 {
+    bool                      enabled;
     object_texture_data_type  texture;
     f3_type                  *vertex;
 };

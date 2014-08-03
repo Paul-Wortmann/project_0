@@ -66,6 +66,19 @@ int main (int argc, char **argv)
                 //load base resources
                 test_object = game.core.object_manager.add(game.core.object_manager.number_of_objects+1);
                 test_object->render.texture.difuse =  game.core.sprite_sheet_manager.add("data/hello_minji.png",64,64);
+                test_object->render.vertex = new f3_type[4];
+                test_object->render.vertex[0].x =  1.0f;
+                test_object->render.vertex[0].y =  1.0f;
+                test_object->render.vertex[0].z =  1.0f;
+                test_object->render.vertex[1].x = -1.0f;
+                test_object->render.vertex[1].y =  1.0f;
+                test_object->render.vertex[1].z = -1.0f;
+                test_object->render.vertex[2].x = -1.0f;
+                test_object->render.vertex[2].y = -1.0f;
+                test_object->render.vertex[2].z = -1.0f;
+                test_object->render.vertex[3].x =  1.0f;
+                test_object->render.vertex[3].y = -1.0f;
+                test_object->render.vertex[3].z = -1.0f;
                 //test_tile_set = game.core.texture_manager.add_texture("data/tilesets/tileset_0.png",true,64,64);
                 //test_texture = game.core.texture_manager.add_texture("data/tilesets/tileset_0.png",true,64,64);
                 //game.core.tmx_loader.load(test_map,"data/maps/test_0.tmx");
@@ -90,15 +103,18 @@ int main (int argc, char **argv)
 
 
 //test-------------
+/*
+
     glClearColor(255,127,127,255);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     game.core.sprite_sheet_manager.draw(test_object->render.texture.difuse,0,0,0,1.0,0.5,0,0);
     SDL_GL_SwapWindow(game.core.graphics.window);
+*/
 //test-------------
 
 
 
-                //game.core.graphics.render();
+                game.core.graphics.render();
             break;
             case GAME_STATE_DEINIT:
                 game.core.log.write("# -------------- Game de-initialization --------- #");

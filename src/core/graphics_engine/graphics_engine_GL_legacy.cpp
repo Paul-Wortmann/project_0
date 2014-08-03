@@ -257,7 +257,28 @@ bool GL_legacy_render(void)
 {
     bool return_value = true;
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    //game.render();
+    if (game.core.object_manager.number_of_objects > 0)
+    {
+        glPushMatrix();
+        object_type* temp_pointer;
+        temp_pointer = game.core.object_manager.root;
+        if (temp_pointer != NULL)
+        {
+            glBindTexture( GL_TEXTURE_2D, temp_pointer->render.texture.difuse->data.data);
+            glLoadIdentity();
+            glBegin( GL_QUADS );
+            glTexCoord2i( 1, 0 );glVertex3f(temp_pointer->render.vertex[0].x,temp_pointer->render.vertex[0].y,temp_pointer->render.vertex[0].y);
+            glTexCoord2i( 0, 0 );glVertex3f(temp_pointer->render.vertex[1].x,temp_pointer->render.vertex[1].y,temp_pointer->render.vertex[1].y);
+            glTexCoord2i( 0, 1 );glVertex3f(temp_pointer->render.vertex[2].x,temp_pointer->render.vertex[2].y,temp_pointer->render.vertex[2].y);
+            glTexCoord2i( 1, 1 );glVertex3f(temp_pointer->render.vertex[3].x,temp_pointer->render.vertex[3].y,temp_pointer->render.vertex[3].y);
+            glEnd();
+            while (temp_pointer->next != NULL)
+            {
+                temp_pointer = temp_pointer->next;
+            }
+        }
+        glPopMatrix();
+    }
     SDL_GL_SwapWindow(game.core.graphics.window);
     return(return_value);
 }
