@@ -26,7 +26,7 @@
 void game_class::init(void)
 {
     game_class::state = GAME_STATE_INIT;
-    game_class::core.debug = false;
+    game_class::core.debug.enabled = false;
     game_class::core.log.file_name = GAME_NAME;
     game_class::core.log.file_name += ".log";
     game_class::core.config.file_name = GAME_NAME;

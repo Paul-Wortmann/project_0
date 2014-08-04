@@ -27,8 +27,10 @@
 #include "graphics_engine/graphics_engine.hpp"
 #include "map/map.hpp"
 #include "map/loader_tmx.hpp"
+#include "map/loader_xml.hpp"
 #include "other/command_line_parser.hpp"
 #include "other/config.hpp"
+#include "other/debug.hpp"
 #include "other/file.hpp"
 #include "other/io_manager.hpp"
 #include "other/log.hpp"
@@ -45,15 +47,17 @@
 class core_class
 {
     public:
-    bool                       debug;
+    //bool                       debug;
     unsigned int               FPS;
     command_line_parser_class  command_line_parser;
     config_class               config;
+    debug_class                debug;
     file_class                 file;
     font_manager_class         font_manager;
     graphics_engine_class      graphics;
     io_manager_class           io_manager;
     loader_tmx_class           tmx_loader;
+    loader_xml_class           xml_loader;
     log_class                  log;
     misc_class                 misc;
     music_manager_class        music_manager;

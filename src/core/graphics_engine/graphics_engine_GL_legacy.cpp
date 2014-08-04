@@ -182,7 +182,7 @@ bool GL_legacy_init(void)
                     temp_position++;
                 }
                 game.core.graphics.gl_extention_names[j] = temp_string;
-                if (game.core.debug) game.core.log.write("Loaded OpenGL Extension -> "+temp_string);
+                if (game.core.debug.enabled) game.core.log.write("Loaded OpenGL Extension -> "+temp_string);
             }
             glViewport(0, 0,game.core.config.display_resolution_x,game.core.config.display_resolution_y);
             glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -256,6 +256,7 @@ bool GL_legacy_deinit(void)
 bool GL_legacy_render(void)
 {
     bool return_value = true;
+    glClearColor(255,127,127,255);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     if (game.core.object_manager.number_of_objects > 0)
     {
@@ -264,17 +265,16 @@ bool GL_legacy_render(void)
         temp_pointer = game.core.object_manager.root;
         if (temp_pointer != NULL)
         {
-            glBindTexture( GL_TEXTURE_2D, temp_pointer->render.texture.difuse->data.data);
-            glLoadIdentity();
-            glBegin( GL_QUADS );
-            glTexCoord2i( 1, 0 );glVertex3f(temp_pointer->render.vertex[0].x,temp_pointer->render.vertex[0].y,temp_pointer->render.vertex[0].y);
-            glTexCoord2i( 0, 0 );glVertex3f(temp_pointer->render.vertex[1].x,temp_pointer->render.vertex[1].y,temp_pointer->render.vertex[1].y);
-            glTexCoord2i( 0, 1 );glVertex3f(temp_pointer->render.vertex[2].x,temp_pointer->render.vertex[2].y,temp_pointer->render.vertex[2].y);
-            glTexCoord2i( 1, 1 );glVertex3f(temp_pointer->render.vertex[3].x,temp_pointer->render.vertex[3].y,temp_pointer->render.vertex[3].y);
-            glEnd();
-            while (temp_pointer->next != NULL)
+            for (temp_pointer = game.core.object_manager.root; temp_pointer != NULL; temp_pointer = temp_pointer->next)
             {
-                temp_pointer = temp_pointer->next;
+                glBindTexture( GL_TEXTURE_2D, temp_pointer->render.texture.difuse->data.data);
+                glLoadIdentity();
+                glBegin( GL_QUADS );
+                glTexCoord2i( 1, 0 );glVertex3f(temp_pointer->render.vertex[0].x,temp_pointer->render.vertex[0].y,temp_pointer->render.vertex[0].y);
+                glTexCoord2i( 0, 0 );glVertex3f(temp_pointer->render.vertex[1].x,temp_pointer->render.vertex[1].y,temp_pointer->render.vertex[1].y);
+                glTexCoord2i( 0, 1 );glVertex3f(temp_pointer->render.vertex[2].x,temp_pointer->render.vertex[2].y,temp_pointer->render.vertex[2].y);
+                glTexCoord2i( 1, 1 );glVertex3f(temp_pointer->render.vertex[3].x,temp_pointer->render.vertex[3].y,temp_pointer->render.vertex[3].y);
+                glEnd();
             }
         }
         glPopMatrix();
@@ -286,8 +286,8 @@ bool GL_legacy_render(void)
 bool GL_legacy_build_mode_list(void)
 {
     std::string string_data;
-    bool debug_state = game.core.debug;
-    game.core.debug = false;
+    bool debug_state = game.core.debug.enabled;
+    game.core.debug.enabled = false;
     bool return_value = true;
     if (game.core.graphics.number_display_modes <= 0)
     {
@@ -295,9 +295,9 @@ bool GL_legacy_build_mode_list(void)
     }
     else
     {
-        if (game.core.debug) game.core.log.write("-----------------------------------------------------");
-        if (game.core.debug)game.core.log.write("- Menu display list:                                -");
-        if (game.core.debug)game.core.log.write("-----------------------------------------------------");
+        if (game.core.debug.enabled) game.core.log.write("-----------------------------------------------------");
+        if (game.core.debug.enabled) game.core.log.write("- Menu display list:                                -");
+        if (game.core.debug.enabled) game.core.log.write("-----------------------------------------------------");
         game.core.graphics.menu_mode_length = 1;
         int list_position = 0;
         int last_w = game.core.graphics.display_mode[0].w;
@@ -322,7 +322,7 @@ bool GL_legacy_build_mode_list(void)
                 if (list_position < game.core.graphics.menu_mode_length)
                 {
                     game.core.graphics.menu_mode_list[list_position] = i;
-                    if (game.core.debug)
+                    if (game.core.debug.enabled)
                     {
                         string_data  = "Menu res - x - ";
                         string_data += game.core.misc.itos(game.core.graphics.display_mode[i].w);
@@ -334,9 +334,9 @@ bool GL_legacy_build_mode_list(void)
                 list_position++;
             }
         }
-        if (game.core.debug)game.core.log.write("-----------------------------------------------------");
+        if (game.core.debug.enabled) game.core.log.write("-----------------------------------------------------");
     }
-    game.core.debug = debug_state;
+    game.core.debug.enabled = debug_state;
     return(return_value);
 }
 

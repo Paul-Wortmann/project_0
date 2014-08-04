@@ -78,7 +78,7 @@ bool GLES_init(void)
         game.core.log.write("Number of display modes -> "+game.core.misc.itos(game.core.graphics.number_display_modes));
         for (int i = 0; i < game.core.graphics.number_display_modes; i++)
         {
-            if ((SDL_GetDisplayMode(game.core.graphics.current_display,i,&game.core.graphics.display_mode[i]) == 0)&&(game.core.debug))
+            if ((SDL_GetDisplayMode(game.core.graphics.current_display,i,&game.core.graphics.display_mode[i]) == 0)&&(game.core.debug.enabled))
             {
                 game.core.log.write("Display mode - "+game.core.misc.itos(i)+" - x - "+game.core.misc.itos(game.core.graphics.display_mode[i].w)+" - y - "+game.core.misc.itos(game.core.graphics.display_mode[i].h)+" - refresh rate - "+game.core.misc.itos(game.core.graphics.display_mode[i].refresh_rate));
             }
@@ -176,7 +176,7 @@ bool GLES_init(void)
                         for (int j = 0; j < game.core.graphics.gl_extention_count; j++)
                         {
                             game.core.graphics.gl_extention_names[j] = (const char*)glGetStringi(GL_EXTENSIONS, j);
-                            if (game.core.debug) game.core.log.write("Loaded OpenGL Extension -> "+game.core.graphics.gl_extention_names[j]);
+                            if (game.core.debug.enabled) game.core.log.write("Loaded OpenGL Extension -> "+game.core.graphics.gl_extention_names[j]);
                         }
                         glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
                         // Vertex Shader
@@ -292,9 +292,9 @@ bool GLES_build_mode_list(void)
     }
     else
     {
-        if (game.core.debug) game.core.log.write("-----------------------------------------------------");
-        if (game.core.debug)game.core.log.write("- Menu display list:                                -");
-        if (game.core.debug)game.core.log.write("-----------------------------------------------------");
+        if (game.core.debug.enabled) game.core.log.write("-----------------------------------------------------");
+        if (game.core.debug.enabled) game.core.log.write("- Menu display list:                                -");
+        if (game.core.debug.enabled) game.core.log.write("-----------------------------------------------------");
         game.core.graphics.menu_mode_length = 1;
         int list_position = 0;
         int last_w = game.core.graphics.display_mode[0].w;
@@ -319,12 +319,12 @@ bool GLES_build_mode_list(void)
                 if (list_position < game.core.graphics.menu_mode_length)
                 {
                     game.core.graphics.menu_mode_list[list_position] = i;
-                    if (game.core.debug)game.core.log.write("Menu res - x - "+game.core.misc.itos(game.core.graphics.display_mode[i].w)+" - y - "+game.core.misc.itos(game.core.graphics.display_mode[i].h));
+                    if (game.core.debug.enabled) game.core.log.write("Menu res - x - "+game.core.misc.itos(game.core.graphics.display_mode[i].w)+" - y - "+game.core.misc.itos(game.core.graphics.display_mode[i].h));
                 }
                 list_position++;
             }
         }
-        if (game.core.debug)game.core.log.write("-----------------------------------------------------");
+        if (game.core.debug.enabled) game.core.log.write("-----------------------------------------------------");
     }
     return(return_value);
 };
