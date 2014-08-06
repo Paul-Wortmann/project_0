@@ -21,14 +21,36 @@
 *
 */
 
+#include <iostream>
 #include "debug.hpp"
+#include "../core.hpp"
+#include "../../game.hpp"
+
+extern game_class game;
 
 debug_class::debug_class (void)
 {
-
-};
+    debug_class::enabled         = true;
+    debug_class::enabled_console = true;
+    debug_class::enabled_log     = true;
+    debug_class::enabled_msgbox  = true;
+}
 
 debug_class::~debug_class (void)
 {
 
-};
+}
+
+void debug_class::write(std::string message)
+{
+    if (debug_class::enabled_console) std::cout << message << std::endl;
+    if (debug_class::enabled_log)     game.core.log.write(message);
+    if (debug_class::enabled_msgbox)  SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"Internal Error.",message.c_str(),NULL);
+}
+
+void debug_class::write(std::string message, int flags)
+{
+    if (flags == FLAG_DEBUG_CONSOLE) std::cout << message << std::endl;
+    if (flags == FLAG_DEBUG_LOG)     game.core.log.write(message);
+    if (flags == FLAG_DEBUG_MSGBOX)  SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"Internal Error.",message.c_str(),NULL);
+}

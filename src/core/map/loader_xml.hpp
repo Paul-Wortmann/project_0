@@ -27,13 +27,26 @@
 #include "../resource_management/texture_manager.hpp"
 #include "../other/types.hpp"
 
+struct xml_texture_data_type
+{
+   texture_data_type difuse;
+   texture_data_type normal;
+   texture_data_type specular;
+};
+
 struct xml_object_data_type
 {
-    bool loaded;
+    bool                  loaded;
+    f3_type               position;
+    f3_type               dimention;
+    xml_texture_data_type texture;
 };
 
 struct xml_map_type
 {
+    int  number_of_backgrounds;
+    int  number_of_objects;
+    xml_object_data_type* background;
     xml_object_data_type* object;
 };
 

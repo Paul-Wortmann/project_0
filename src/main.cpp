@@ -123,12 +123,11 @@ int main (int argc, char **argv)
             break;
             case GAME_STATE_ERROR:
             default:
-                game.core.log.write("FAIL -> Internal error!");
+                game.core.debug.write("Please send Paul the log file.");
                 return_value = EXIT_FAILURE;
                 game.state = GAME_STATE_DEINIT;
             break;
         }
     }
-    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"Internal error!","Please send Paul the log file.",NULL);
     return (return_value);
 }

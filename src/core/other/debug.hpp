@@ -24,15 +24,24 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
+#include <string>
+
+#define FLAG_DEBUG_CONSOLE 1
+#define FLAG_DEBUG_LOG     2
+#define FLAG_DEBUG_MSGBOX  4
 
 class debug_class
 {
     public:
         bool        enabled;
+        bool        enabled_log;
+        bool        enabled_console;
+        bool        enabled_msgbox;
          debug_class(void);
         ~debug_class(void);
+        void        write(std::string message);
+        void        write(std::string message, int flags);
 };
-
 
 #endif //DEBUG_H
 

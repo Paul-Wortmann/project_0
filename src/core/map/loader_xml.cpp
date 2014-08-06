@@ -37,6 +37,11 @@ void loader_xml_class::load(xml_map_type *xml_map_pointer, std::string file_name
         PHYSFS_File *file_pointer = PHYSFS_openRead(file_name.c_str());
         if (file_pointer)
         {
+            if (xml_map_pointer == NULL) xml_map_pointer = new xml_map_type;
+            xml_map_pointer->number_of_backgrounds = 0;
+            xml_map_pointer->number_of_objects     = 0;
+
+
             //code
             if (file_pointer) PHYSFS_close(file_pointer);
         }
