@@ -38,7 +38,7 @@ void GameCore::init()
         log("Failed to initialize window the subsystem.");
         setGameState(RoboEngine::EXIT);
     }
-    m_graphicsObject.SetMesh("./models/wyvern.obj");
+    m_graphicsObject.SetMesh("./models/box.obj");
     m_graphicsObject.SetShader("./shaders/default");
     m_graphicsObject.SetTexture("./textures/bricks.png");
     m_graphicsObject.SetMeshManager(m_meshManager);
