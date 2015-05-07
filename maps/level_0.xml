@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map>
+    <obj>./models/tile.obj</obj>
+    <shader>./shaders/default</shader>
+    <size>
+        <x>10</x>
+        <y>10</y>
+    </size>
+    <tile_size>
+        <x>0.1</x>
+        <y>0.1</y>
+    </tile_size>
+    <default_tile_texture>
+	    <diffuse>./textures/tiles/blue_d.png</diffuse>
+	    <normal>./textures/tiles/blue_n.png</normal>
+	    <specular>./textures/tiles/blue_s.png</specular>
+    </default_tile_texture>
+
+    <tile>
+	    <position>
+            <x>5</x>
+            <y>5</y>
+        </position>
+	    <texture>
+		    <diffuse>./textures/tiles/green_d.png</diffuse>
+		    <normal>./textures/tiles/green_n.png</normal>
+		    <specular>./textures/tiles/green_s.png</specular>
+	    </texture>
+    </tile>
+</map>
+

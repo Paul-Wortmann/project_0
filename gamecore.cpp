@@ -35,18 +35,22 @@ void GameCore::init()
     log("");
     if (!m_window.Create(getGameName(),1024,768,0))
     {
-        log("Failed to initialize window the subsystem.");
+        log("Failed to initialize the window subsystem.");
         setGameState(RoboEngine::EXIT);
     }
-    m_graphicsObject.SetMesh("./models/box.obj");
+    m_map.Load("./maps/level_0.xml", m_meshManager, m_shaderManager, m_textureManager);
+    /*
+    m_graphicsObject.SetMesh("./models/tile.obj");
     m_graphicsObject.SetShader("./shaders/default");
-    m_graphicsObject.SetTexture("./textures/bricks.png");
+    m_graphicsObject.SetTexture("./textures/tiles/blue_d.png");
     m_graphicsObject.SetMeshManager(m_meshManager);
     m_graphicsObject.SetShaderManager(m_shaderManager);
     m_graphicsObject.SetTextureManager(m_textureManager);
+    m_graphicsObject.SetPosition(0.0f,0.0f,0.0f);
+    m_graphicsObject.SetScale(1.0f,1.0f,1.0f);
+    m_graphicsObject.SetRotation(0.0f,0.0f,0.0f);
     m_graphicsObject.Load();
-
-
+    */
 
     //m_shader.Init("./shaders/basicshader");
     m_camera.Init(glm::vec3(0,0,-4), 70.0f, (float)m_window.GetWidth()/(float)m_window.GetHeight(), 0.01f, 1000.0f);
@@ -69,13 +73,21 @@ void GameCore::update()
         m_camera.SetPosition(glm::vec3(m_camera.GetPosition().x - move_speed, m_camera.GetPosition().y, m_camera.GetPosition().z));
     if (m_ioManager.state.key_d)
         m_camera.SetPosition(glm::vec3(m_camera.GetPosition().x + move_speed, m_camera.GetPosition().y, m_camera.GetPosition().z));
-    if (m_ioManager.state.key_q)
-        m_transform.GetRot().y += 1;
-    if (m_ioManager.state.key_e)
-        m_transform.GetRot().y -= 1;
     if (m_ioManager.state.key_z)
-        m_transform.GetRot().z += 1;
+        m_camera.SetPosition(glm::vec3(m_camera.GetPosition().x, m_camera.GetPosition().y - move_speed, m_camera.GetPosition().z));
     if (m_ioManager.state.key_c)
+        m_camera.SetPosition(glm::vec3(m_camera.GetPosition().x, m_camera.GetPosition().y + move_speed, m_camera.GetPosition().z));
+    if (m_ioManager.state.key_r)
+        m_transform.GetRot().x += 1;
+    if (m_ioManager.state.key_t)
+        m_transform.GetRot().x -= 1;
+    if (m_ioManager.state.key_f)
+        m_transform.GetRot().y += 1;
+    if (m_ioManager.state.key_g)
+        m_transform.GetRot().y -= 1;
+    if (m_ioManager.state.key_v)
+        m_transform.GetRot().z += 1;
+    if (m_ioManager.state.key_b)
         m_transform.GetRot().z -= 1;
     m_window.Update();
 }
@@ -84,10 +96,12 @@ void GameCore::draw()
 {
     if (m_window.IsOpen())
     {
+        m_map.Draw(m_transform, m_camera);
+
         //m_transform.GetRot().y += 1;
         //m_transform.GetRot().z += 1;
-        m_graphicsObject.Update(m_transform, m_camera);
-        m_graphicsObject.Draw();
+        //m_graphicsObject.Update(m_transform, m_camera);
+        //m_graphicsObject.Draw();
 
         //m_shader.Update(m_transform, m_camera);
         //m_shader.Bind();

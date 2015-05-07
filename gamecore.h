@@ -39,6 +39,8 @@
 #include <../RoboEngine/graphics_engine/mesh.h>
 #include <../RoboEngine/graphics_engine/graphicsobject.h>
 
+#include "map.h"
+
 class GameCore : public RoboEngine::MainGame
 {
     public:
@@ -55,11 +57,11 @@ class GameCore : public RoboEngine::MainGame
         RoboEngine::IOManager      m_ioManager;
         RoboEngine::Camera         m_camera;
         RoboEngine::Transform      m_transform;
-
-        RoboEngine::Shader         m_shader;
-        RoboEngine::Texture m_texture;
-        RoboEngine::Mesh m_mesh;
-        RoboEngine::GraphicsObject m_graphicsObject;
+        Map                        m_map;
+        //RoboEngine::Shader         m_shader;
+        //RoboEngine::Texture        m_texture;
+        //RoboEngine::Mesh           m_mesh;
+        //RoboEngine::GraphicsObject m_graphicsObject;
 
 };
 
