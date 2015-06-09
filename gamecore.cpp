@@ -109,3 +109,4 @@ void GameCore::draw()
         //m_mesh.Draw();
     }
 }
+

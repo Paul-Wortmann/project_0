@@ -27,6 +27,9 @@
 
 void Map::Load(const std::string& FileName, const RoboEngine::MeshManager& meshManager, const RoboEngine::ShaderManager& shaderManager, const RoboEngine::TextureManager& textureManager)
 {
+    RoboEngine::ParserXML xmlParser;
+    xmlParser.load(FileName);
+    /*
     unsigned int block_type = XML_BLOCK_UNKNOWN;
     unsigned int key_type   = XML_KEY_UNKNOWN;
     RoboEngine::xml_type      xmlData;
@@ -118,13 +121,14 @@ void Map::Load(const std::string& FileName, const RoboEngine::MeshManager& meshM
             m_tile[k].Load();
         }
     }
+    */
 }
 
 void Map::Draw(const RoboEngine::Transform& transform, const RoboEngine::Camera& camera)
 {
     for (unsigned int i = 0; i < m_size; i++)
     {
-        m_tile[i].Update(transform,camera);
-        m_tile[i].Draw();
+        //m_tile[i].Update(transform,camera);
+        //m_tile[i].Draw();
     }
 }
