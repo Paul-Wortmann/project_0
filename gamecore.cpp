@@ -28,11 +28,14 @@
 
 void GameCore::init()
 {
+    RoboEngine::TRoboEngineVersion RoboEngineVersion;
     setGameName("Project 0");
-    log(getGameName());
-    log("");
+    log("  "+getGameName());
     log("# ---------------------------------------------- #");
     log("");
+    log("Compiled with RoboEngine version: "+std::to_string(RoboEngineVersion.m_nMajorVersion)
+                                        +"."+std::to_string(RoboEngineVersion.m_nMinorVersion)
+                                        +"."+std::to_string(RoboEngineVersion.m_nPatchVersion));
     if (!m_window.Create(getGameName(),1024,768,0))
     {
         log("Failed to initialize the window subsystem.");
