@@ -1,5 +1,6 @@
-project_0
-=========
+project_0 (Name subject to change.)
+===================================
 
-Experimental game platform game.
+Platform game.
 Very early stages, not much to show....
+GPL 3.0
